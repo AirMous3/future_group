@@ -39,7 +39,7 @@ export const BooksList = ({
 
   return (
     <div>
-      <div>Found {totalItems} results</div>
+      <div className={s.founds}>Found {totalItems} results</div>
       <div className={s.cardWrapper}>
         {books.map(({ id, categories, title, subTitle, image, author }) => (
           <BookCard

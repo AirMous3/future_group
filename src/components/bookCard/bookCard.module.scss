@@ -1,7 +1,33 @@
-.container {
-    width: 23%;
-    margin-left: 10px;
-    margin-top: 10px;
-    background-color: beige;
-    font-weight: normal;
+.card {
+  min-height: 400px;
+  max-width: 22%;
+  width: 100%;
+  background-color: rgba(204, 204, 204, 0.35);
+  font-weight: normal;
+  backdrop-filter: blur(5px);
+  padding: 40px 20px;
+
+  @media screen and (max-width: 1300px) {
+    max-width: 29%;
+  }
+  @media screen and (max-width: 950px) {
+    max-width: 46%;
+  }
+  @media screen and (max-width: 650px) {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  img {
+
+    min-height: 200px;
+
+  }
+}
+
+.description {
+  text-align: start;
+  padding: 20px;
 }

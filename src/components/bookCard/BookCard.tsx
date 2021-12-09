@@ -26,13 +26,12 @@ export const BookCard = ({
     authors = author.join(' / ');
   }
   return (
-    <div className={s.container}>
+    <div className={s.card}>
       <NavLink to={`bookInfo/${id}`}>
         <img src={image} alt="bookImage" />
-        <div className="description">
+        <div className={s.description}>
           <div>categories:{categories}</div>
           <div>
-            title:
             {title}
             {subTitle}
           </div>

@@ -1,9 +1,14 @@
 body {
-  margin: 0;
-    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: url("https://zakazposterov.ru/fotooboi/z/fotooboi-e-65839-11of15-starie-knigi-besshovnaya-tekstura-vertikaljno-i-gorizon-zakazposterov-ru_z.jpg") center 500px;
+    color: white !important;
+}
+
+body #root {
+    font-family: 'Roboto', sans-serif
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }

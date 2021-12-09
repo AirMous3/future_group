@@ -56,10 +56,10 @@ export const App = (): ReactElement => {
         <h1>Search for books</h1>
 
         <Search
+          className={s.search}
           onSearch={onSearch}
           placeholder="input search text"
           allowClear
-          style={{ width: 500 }}
         />
 
         <div className={s.categoriesWrapper}>
@@ -74,7 +74,7 @@ export const App = (): ReactElement => {
           <Route
             path="/"
             element={
-              <div>
+              <div className={s.bookListWrapper}>
                 {loadStatus === 'loading' ? (
                   <Preloader />
                 ) : (

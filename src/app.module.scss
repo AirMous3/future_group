@@ -1,41 +1,44 @@
 .container {
   text-align: center;
-  height: 300px;
+  min-height: 300px;
   font-size: 20px;
   font-weight: bold;
 }
 
 .header {
-  color: white;
+  padding: 5vh 15px 5vh 15px;
+  min-height: 35vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  width: 100%;
-  background-image: url("https://cdn.pixabay.com/photo/2020/04/27/17/35/books-5100844_1280.jpg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
+  background-color: rgba(204, 204, 204, 0.35);
+  backdrop-filter: blur(3px);
 
   h1 {
     color: white;
     font-style: italic;
     letter-spacing: 2px;
+    font-size: 50px;
   }
 }
 
 .categoriesWrapper {
   margin-top: 50px;
   display: flex;
+  flex-wrap: wrap;
+  grid-gap: 10px;
+  gap: 10px;
 }
 
-.categories {
-  display: flex;
-  font-style: italic;
-  font-weight: normal;
 
-  div {
-    margin-right: 20px;
-  }
+.search {
+  width: 100%;
+  max-width: 500px;
 }
 
+.bookListWrapper {
+  background: white;
+  color: black;
+  padding-top: 50px;
+  min-height: 65vh;
+}

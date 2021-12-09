@@ -1,5 +1,26 @@
+.founds {
+  font-style: italic;
+  letter-spacing: 1px;
+  margin-bottom: 60px;
+  font-size: 30px;
+}
+
 .cardWrapper {
+  margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  max-width: 1780px;
+  margin-right: auto;
+  margin-left: auto;
+  gap: 50px 4%;
+  padding-right: 15px;
+  padding-left: 15px;
+
+  @media screen and (max-width: 1300px) {
+    gap: 50px 6.5%;
+  }
+  @media screen and (max-width: 950px) {
+    gap: 50px 8%;
+  }
+
 }

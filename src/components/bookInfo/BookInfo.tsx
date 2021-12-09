@@ -43,7 +43,7 @@ export const BookInfo = (): ReactElement => {
               {book.subTitle}
             </div>
             <div>author:{book.author}</div>
-            <textarea disabled value={book.description} />
+            <p>{book.description}</p>
           </div>
         </div>
       )}
