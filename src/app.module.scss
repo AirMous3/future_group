@@ -1,0 +1,39 @@
+.container {
+  text-align: center;
+  height: 300px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-image: url("https://cdn.pixabay.com/photo/2020/04/27/17/35/books-5100844_1280.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+
+  h1 {
+    color: white;
+    font-style: italic;
+    letter-spacing: 2px;
+  }
+}
+
+.categoriesWrapper {
+  margin-top: 50px;
+  display: flex;
+}
+
+.categories {
+  display: flex;
+  font-style: italic;
+  font-weight: normal;
+  div {
+    margin-right: 20px;
+  }
+}
