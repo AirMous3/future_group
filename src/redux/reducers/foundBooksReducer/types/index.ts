@@ -2,17 +2,19 @@ import { loadMore, setBooks } from '../actions/foundBooksActions';
 
 export interface initState {
   totalItems: number;
-  booksInfo: {
-    id: string;
-    image?: string;
-    title?: string;
-    subTitle?: string;
-    categories?: string[];
-    author?: string[];
-  }[];
+  booksInfo: foundBookType[];
 }
 
-export interface BooksType {
+export interface foundBookType {
+  id: string;
+  image?: string;
+  title?: string;
+  subTitle?: string;
+  categories?: string[];
+  author?: string[];
+}
+
+export interface foundBooksType {
   id: string;
   volumeInfo: {
     title?: string;

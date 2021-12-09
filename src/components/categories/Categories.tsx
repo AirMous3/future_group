@@ -5,10 +5,11 @@ import { Select } from 'antd';
 import s from './categories.module.scss';
 
 const { Option } = Select;
-type PropsType = {
+
+interface PropsType {
   onChangeCategory: (value: string) => void;
   category: string;
-};
+}
 export const Categories = ({ onChangeCategory, category }: PropsType): ReactElement => (
   <div className={s.container}>
     <div>categories</div>

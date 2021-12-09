@@ -11,7 +11,7 @@ export interface initState {
   description?: string;
 }
 
-export interface bookType {
+export interface currentBookType {
   title?: string;
   subtitle?: string;
   categories?: string[];

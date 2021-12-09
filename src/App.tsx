@@ -1,26 +1,23 @@
 import React, { ReactElement, useState } from 'react';
 
 import 'antd/dist/antd.css';
-import { Input, Select } from 'antd';
+import { Input } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import s from './app.module.scss';
-import { BookCard } from './components/bookCard/BookCard';
 import { BookInfo } from './components/bookInfo/BookInfo';
+import { BooksList } from './components/booksList/BooksList';
 import { Categories } from './components/categories/Categories';
 import { Preloader } from './components/preloader/Preloader';
-import {
-  getBooksThunk,
-  loadMoreThunk,
-} from './redux/reducers/foundBooksReducer/middleware/foundBooksThunks';
+import { Sorting } from './components/sorting/Sorting';
+import { getBooksThunk } from './redux/reducers/foundBooksReducer/middleware/foundBooksThunks';
 import { AppRootStateType } from './redux/store';
 
 const { Search } = Input;
-const { Option } = Select;
 
-const FIRST_CATEGORIES_ITEM = 0;
 const BOOKS_PER_PAGE = 30;
+const START_INDEX_TO_FIRST_SEARCH = 0;
 
 export const App = (): ReactElement => {
   const dispatch = useDispatch();
@@ -42,34 +39,36 @@ export const App = (): ReactElement => {
   const onSearch = (bookToSearch: string): void => {
     navigate('/');
     setBook(bookToSearch);
-    dispatch(getBooksThunk(bookToSearch, category, sorting, startIndex, BOOKS_PER_PAGE));
+    dispatch(
+      getBooksThunk(
+        bookToSearch,
+        category,
+        sorting,
+        START_INDEX_TO_FIRST_SEARCH,
+        BOOKS_PER_PAGE,
+      ),
+    );
   };
 
-  const loadMore = (): void => {
-    dispatch(loadMoreThunk(book, category, sorting, startIndex, maxResults));
-  };
   return (
     <div className={s.container}>
       <div className={s.header}>
         <h1>Search for books</h1>
+
         <Search
           onSearch={onSearch}
           placeholder="input search text"
           allowClear
           style={{ width: 500 }}
         />
+
         <div className={s.categoriesWrapper}>
           <Categories onChangeCategory={setCategory} category={category} />
 
-          <div className={s.categories}>
-            <div>sorting by</div>
-            <Select onChange={setSorting} value={sorting} style={{ width: 130 }}>
-              <Option value="relevance">relevance</Option>
-              <Option value="newest">newest</Option>
-            </Select>
-          </div>
+          <Sorting onChangeSorting={setSorting} sorting={sorting} />
         </div>
       </div>
+
       <div>
         <Routes>
           <Route
@@ -79,31 +78,16 @@ export const App = (): ReactElement => {
                 {loadStatus === 'loading' ? (
                   <Preloader />
                 ) : (
-                  <div>
-                    <div>Found {totalItems} results</div>
-                    <div className={s.cardWrapper}>
-                      {books.map(({ id, categories, title, subTitle, image, author }) => (
-                        <BookCard
-                          key={id}
-                          id={id}
-                          title={title}
-                          image={image}
-                          author={author}
-                          categories={categories ? categories[FIRST_CATEGORIES_ITEM] : ''}
-                          subTitle={subTitle}
-                        />
-                      ))}
-                    </div>
-                    {books.length < totalItems ? (
-                      <button
-                        disabled={loadStatus === 'disable'}
-                        type="button"
-                        onClick={loadMore}
-                      >
-                        load More
-                      </button>
-                    ) : null}
-                  </div>
+                  <BooksList
+                    books={books}
+                    sorting={sorting}
+                    category={category}
+                    startIndex={startIndex}
+                    totalItems={totalItems}
+                    loadStatus={loadStatus}
+                    maxResults={maxResults}
+                    book={book}
+                  />
                 )}
               </div>
             }
