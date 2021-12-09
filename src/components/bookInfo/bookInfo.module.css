@@ -1,0 +1,28 @@
+.container {
+    background-color: #d0cdcd;
+    min-height: 68vh;
+    display: flex;
+}
+
+.bookImage {
+    width: 40%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.bookImage img {
+
+    width: 50%;
+}
+
+.bookDescription {
+    width: 60%;
+    background-color: white;
+}
+
+.bookDescription textarea {
+    padding: 20px;
+    resize: none;
+    width: 800px;
+    min-height: 400px;
+}

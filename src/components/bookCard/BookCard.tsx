@@ -1,8 +1,11 @@
 import { ReactElement } from 'react';
 
+import { NavLink } from 'react-router-dom';
+
 import s from './bookCard.module.scss';
 
 interface Props {
+  id: string;
   image?: string;
   title?: string;
   subTitle?: string;
@@ -11,6 +14,7 @@ interface Props {
 }
 
 export const BookCard = ({
+  id,
   categories,
   subTitle,
   title,
@@ -23,16 +27,18 @@ export const BookCard = ({
   }
   return (
     <div className={s.container}>
-      <img src={image} alt="bookImage" />
-      <div className="description">
-        <div>categories:{categories}</div>
-        <div>
-          title:
-          {title}
-          {subTitle}
+      <NavLink to={`bookInfo/${id}`}>
+        <img src={image} alt="bookImage" />
+        <div className="description">
+          <div>categories:{categories}</div>
+          <div>
+            title:
+            {title}
+            {subTitle}
+          </div>
+          <div>author:{authors}</div>
         </div>
-        <div>author:{authors}</div>
-      </div>
+      </NavLink>
     </div>
   );
 };

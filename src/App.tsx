@@ -1,11 +1,13 @@
 import React, { ReactElement, useState } from 'react';
 
+import 'antd/dist/antd.css';
 import { Input, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
-import 'antd/dist/antd.css';
 import s from './app.module.scss';
 import { BookCard } from './components/bookCard/BookCard';
+import { BookInfo } from './components/bookInfo/BookInfo';
 import { getBooksThunk, loadMoreThunk } from './redux/foundBooksReducer';
 import { AppRootStateType } from './redux/store';
 
@@ -17,6 +19,7 @@ const BOOKS_PER_PAGE = 30;
 
 export const App = (): ReactElement => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const books = useSelector((state: AppRootStateType) => state.foundBooks.booksInfo);
   const totalItems = useSelector(
@@ -31,6 +34,7 @@ export const App = (): ReactElement => {
   const maxResults = Math.min(BOOKS_PER_PAGE, totalItems - startIndex);
 
   const onSearch = (bookToSearch: string): void => {
+    navigate('/');
     setBook(bookToSearch);
     dispatch(getBooksThunk(bookToSearch, category, sorting, startIndex, BOOKS_PER_PAGE));
   };
@@ -72,25 +76,36 @@ export const App = (): ReactElement => {
         </div>
       </div>
       <div>
-        <div>Found {totalItems} results</div>
-        <div className={s.cardWrapper}>
-          {books.map(({ id, categories, title, subTitle, image, author }) => (
-            <BookCard
-              key={id}
-              title={title}
-              image={image}
-              author={author}
-              categories={categories ? categories[FIRST_CATEGORIES_ITEM] : ''}
-              subTitle={subTitle}
-            />
-          ))}
-        </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <div>Found {totalItems} results</div>
+                <div className={s.cardWrapper}>
+                  {books.map(({ id, categories, title, subTitle, image, author }) => (
+                    <BookCard
+                      key={id}
+                      id={id}
+                      title={title}
+                      image={image}
+                      author={author}
+                      categories={categories ? categories[FIRST_CATEGORIES_ITEM] : ''}
+                      subTitle={subTitle}
+                    />
+                  ))}
+                </div>
+                {books.length < totalItems ? (
+                  <button type="button" onClick={loadMore}>
+                    load More
+                  </button>
+                ) : null}
+              </div>
+            }
+          />
+          <Route path="bookInfo/*" element={<BookInfo />} />
+        </Routes>
       </div>
-      {books.length < totalItems ? (
-        <button type="button" onClick={loadMore}>
-          load More
-        </button>
-      ) : null}
     </div>
   );
 };
