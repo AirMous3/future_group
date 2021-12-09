@@ -33,7 +33,14 @@
   display: flex;
   font-style: italic;
   font-weight: normal;
+
   div {
     margin-right: 20px;
   }
+}
+
+.cardWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
