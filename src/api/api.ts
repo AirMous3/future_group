@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 export const api = {
-  getBooks(book: string) {
+  getBooks(book: string, category: string, sorting: string) {
     return axios
       .get<AxiosResponse>(
-        `${process.env.REACT_APP_URL}volumes?q=${book}&key=${process.env.REACT_APP_MY_API_KEY}`,
+        `${process.env.REACT_APP_URL}volumes?q=${book}+subject:${category}&orderBy=${sorting}&key=${process.env.REACT_APP_MY_API_KEY}`,
       )
       .then(res => res.data);
   },

@@ -66,12 +66,13 @@ export const setBooks = (
 
 // THUNK
 
-export const getBooksThunk = (book: string) => async (dispatch: Dispatch) => {
-  const result = await api.getBooks(book);
-  const { totalItems } = result;
-  const books = result.items?.map(item => ({
-    id: item.id,
-    volumeInfo: item.volumeInfo,
-  }));
-  dispatch(setBooks(totalItems, books || []));
-};
+export const getBooksThunk =
+  (book: string, category: string, sorting: string) => async (dispatch: Dispatch) => {
+    const result = await api.getBooks(book, category, sorting);
+    const { totalItems } = result;
+    const books = result.items?.map(item => ({
+      id: item.id,
+      volumeInfo: item.volumeInfo,
+    }));
+    dispatch(setBooks(totalItems, books || []));
+  };

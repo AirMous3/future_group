@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 import { Input, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,13 +16,19 @@ const FIRST_CATEGORIES_ITEM = 0;
 
 export const App = (): ReactElement => {
   const dispatch = useDispatch();
+
   const books = useSelector((state: AppRootStateType) => state.foundBooks.booksInfo);
   const totalItems = useSelector(
     (state: AppRootStateType) => state.foundBooks.totalItems,
   );
-  const onSearch = (value: string): void => {
-    dispatch(getBooksThunk(value));
+
+  const [sorting, setSorting] = useState('relevance');
+  const [category, setCategory] = useState('');
+
+  const onSearch = (book: string): void => {
+    dispatch(getBooksThunk(book, category, sorting));
   };
+
   return (
     <div className={s.container}>
       <div className={s.header}>
@@ -36,8 +42,8 @@ export const App = (): ReactElement => {
         <div className={s.categoriesWrapper}>
           <div className={s.categories}>
             <div>categories</div>
-            <Select defaultValue="all" style={{ width: 130 }}>
-              <Option value="all">all</Option>
+            <Select onChange={setCategory} value={category} style={{ width: 130 }}>
+              <Option value="">all</Option>
               <Option value="art">art</Option>
               <Option value="biography">biography</Option>
               <Option value="computers">computers</Option>
@@ -48,7 +54,7 @@ export const App = (): ReactElement => {
           </div>
           <div className={s.categories}>
             <div>sorting by</div>
-            <Select value="relevance" style={{ width: 130 }}>
+            <Select onChange={setSorting} value={sorting} style={{ width: 130 }}>
               <Option value="relevance">relevance</Option>
               <Option value="newest">newest</Option>
             </Select>
