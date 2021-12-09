@@ -8,7 +8,8 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import s from './app.module.scss';
 import { BookCard } from './components/bookCard/BookCard';
 import { BookInfo } from './components/bookInfo/BookInfo';
-import { getBooksThunk, loadMoreThunk } from './redux/foundBooksReducer';
+import { Preloader } from './components/preloader/Preloader';
+import { getBooksThunk, loadMoreThunk } from './redux/reducers/foundBooksReducer';
 import { AppRootStateType } from './redux/store';
 
 const { Search } = Input;
@@ -25,6 +26,7 @@ export const App = (): ReactElement => {
   const totalItems = useSelector(
     (state: AppRootStateType) => state.foundBooks.totalItems,
   );
+  const loadStatus = useSelector((state: AppRootStateType) => state.app.status);
 
   const [sorting, setSorting] = useState('relevance');
   const [category, setCategory] = useState('');
@@ -42,7 +44,6 @@ export const App = (): ReactElement => {
   const loadMore = (): void => {
     dispatch(loadMoreThunk(book, category, sorting, startIndex, maxResults));
   };
-
   return (
     <div className={s.container}>
       <div className={s.header}>
@@ -81,25 +82,35 @@ export const App = (): ReactElement => {
             path="/"
             element={
               <div>
-                <div>Found {totalItems} results</div>
-                <div className={s.cardWrapper}>
-                  {books.map(({ id, categories, title, subTitle, image, author }) => (
-                    <BookCard
-                      key={id}
-                      id={id}
-                      title={title}
-                      image={image}
-                      author={author}
-                      categories={categories ? categories[FIRST_CATEGORIES_ITEM] : ''}
-                      subTitle={subTitle}
-                    />
-                  ))}
-                </div>
-                {books.length < totalItems ? (
-                  <button type="button" onClick={loadMore}>
-                    load More
-                  </button>
-                ) : null}
+                {loadStatus === 'loading' ? (
+                  <Preloader />
+                ) : (
+                  <div>
+                    <div>Found {totalItems} results</div>
+                    <div className={s.cardWrapper}>
+                      {books.map(({ id, categories, title, subTitle, image, author }) => (
+                        <BookCard
+                          key={id}
+                          id={id}
+                          title={title}
+                          image={image}
+                          author={author}
+                          categories={categories ? categories[FIRST_CATEGORIES_ITEM] : ''}
+                          subTitle={subTitle}
+                        />
+                      ))}
+                    </div>
+                    {books.length < totalItems ? (
+                      <button
+                        disabled={loadStatus === 'disable'}
+                        type="button"
+                        onClick={loadMore}
+                      >
+                        load More
+                      </button>
+                    ) : null}
+                  </div>
+                )}
               </div>
             }
           />

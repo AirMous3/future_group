@@ -1,6 +1,8 @@
 import { Dispatch } from 'redux';
 
-import { api } from '../api/api';
+import { api } from '../../api/api';
+
+import { setAppStatus } from './appReducer';
 
 const initialState: initState = {
   image: '',
@@ -21,7 +23,7 @@ export const currentBookReducer = (
         description: action.book.description,
         author: action.book.authors,
         categories: action.book.categories,
-        image: action.book.imageLinks.medium,
+        image: action.book.imageLinks ? action.book.imageLinks.medium : '',
         subTitle: action.book.subtitle,
         title: action.book.title,
       };
@@ -44,14 +46,14 @@ interface initState {
 }
 
 interface bookType {
-  title: string;
-  subtitle: string;
-  categories: string[];
-  authors: string[];
-  imageLinks: {
+  title?: string;
+  subtitle?: string;
+  categories?: string[];
+  authors?: string[];
+  imageLinks?: {
     medium: string;
   };
-  description: string;
+  description?: string;
 }
 
 // AC
@@ -65,6 +67,8 @@ export const setBook = (book: bookType) =>
 // THUNK
 
 export const getBookThunk = (book: string) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatus('loading'));
   const result = await api.getBook(book);
   dispatch(setBook(result));
+  dispatch(setAppStatus('succeeded'));
 };
