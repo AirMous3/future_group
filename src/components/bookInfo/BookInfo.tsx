@@ -3,7 +3,7 @@ import { ReactElement, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { getBookThunk } from '../../redux/reducers/currentBookReducer';
+import { getBookThunk } from '../../redux/reducers/currentBookReducer/middleware/currentBookThunks';
 import { AppRootStateType } from '../../redux/store';
 import { Preloader } from '../preloader/Preloader';
 

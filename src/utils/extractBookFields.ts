@@ -1,4 +1,4 @@
-import { BooksType } from '../redux/reducers/foundBooksReducer';
+import { BooksType } from '../redux/reducers/foundBooksReducer/types';
 
 export const extractBookFields = ({
   id,

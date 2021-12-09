@@ -9,7 +9,10 @@ import s from './app.module.scss';
 import { BookCard } from './components/bookCard/BookCard';
 import { BookInfo } from './components/bookInfo/BookInfo';
 import { Preloader } from './components/preloader/Preloader';
-import { getBooksThunk, loadMoreThunk } from './redux/reducers/foundBooksReducer';
+import {
+  getBooksThunk,
+  loadMoreThunk,
+} from './redux/reducers/foundBooksReducer/middleware/foundBooksThunks';
 import { AppRootStateType } from './redux/store';
 
 const { Search } = Input;
