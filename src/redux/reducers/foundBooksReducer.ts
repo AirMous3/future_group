@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 
 import { api } from '../../api/api';
+import { extractBookFields } from '../../utils/extractBookFields';
 
 import { setAppStatus } from './appReducer';
 
@@ -17,37 +18,13 @@ export const foundBooksReducer = (
     case 'FOUND_BOOKS/SET-BOOKS':
       return {
         ...state,
-        booksInfo: action.books.map(
-          ({ id, volumeInfo: { title, categories, imageLinks, authors, subtitle } }) => ({
-            id,
-            author: authors,
-            image: imageLinks ? imageLinks.thumbnail : '',
-            title,
-            categories,
-            subTitle: subtitle,
-          }),
-        ),
+        booksInfo: action.books.map(extractBookFields),
         totalItems: action.totalItems,
       };
     case 'FIND_BOOKS/LOAD-MORE':
       return {
         ...state,
-        booksInfo: [
-          ...state.booksInfo,
-          ...action.books.map(
-            ({
-              id,
-              volumeInfo: { title, categories, imageLinks, authors, subtitle },
-            }) => ({
-              id,
-              categories,
-              subTitle: subtitle,
-              author: authors,
-              image: imageLinks ? imageLinks.thumbnail : '',
-              title,
-            }),
-          ),
-        ],
+        booksInfo: [...state.booksInfo, ...action.books.map(extractBookFields)],
         totalItems: action.totalItems,
       };
     default:
@@ -68,7 +45,7 @@ interface initState {
   }[];
 }
 
-interface books {
+export interface BooksType {
   id: string;
   volumeInfo: {
     title?: string;
@@ -84,10 +61,10 @@ interface books {
 type ActionsType = ReturnType<typeof setBooks> | ReturnType<typeof loadMore>;
 
 // AC
-export const setBooks = (totalItems: number, books: books[]) =>
+export const setBooks = (totalItems: number, books: BooksType[]) =>
   ({ type: 'FOUND_BOOKS/SET-BOOKS', books, totalItems } as const);
 
-export const loadMore = (totalItems: number, books: books[]) =>
+export const loadMore = (totalItems: number, books: BooksType[]) =>
   ({ type: 'FIND_BOOKS/LOAD-MORE', books, totalItems } as const);
 
 // THUNK

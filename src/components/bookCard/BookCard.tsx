@@ -23,7 +23,7 @@ export const BookCard = ({
 }: Props): ReactElement => {
   let authors;
   if (author) {
-    authors = author.join(' ');
+    authors = author.join(' / ');
   }
   return (
     <div className={s.container}>
