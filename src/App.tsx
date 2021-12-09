@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import 'antd/dist/antd.css';
 import s from './app.module.scss';
 import { BookCard } from './components/bookCard/BookCard';
-import { getBooksThunk } from './redux/foundBooksReducer';
+import { getBooksThunk, loadMoreThunk } from './redux/foundBooksReducer';
 import { AppRootStateType } from './redux/store';
 
 const { Search } = Input;
 const { Option } = Select;
 
 const FIRST_CATEGORIES_ITEM = 0;
+const BOOKS_PER_PAGE = 30;
 
 export const App = (): ReactElement => {
   const dispatch = useDispatch();
@@ -24,9 +25,18 @@ export const App = (): ReactElement => {
 
   const [sorting, setSorting] = useState('relevance');
   const [category, setCategory] = useState('');
+  const [book, setBook] = useState('');
 
-  const onSearch = (book: string): void => {
-    dispatch(getBooksThunk(book, category, sorting));
+  const startIndex = books.length;
+  const maxResults = Math.min(BOOKS_PER_PAGE, totalItems - startIndex);
+
+  const onSearch = (bookToSearch: string): void => {
+    setBook(bookToSearch);
+    dispatch(getBooksThunk(bookToSearch, category, sorting, startIndex, BOOKS_PER_PAGE));
+  };
+
+  const loadMore = (): void => {
+    dispatch(loadMoreThunk(book, category, sorting, startIndex, maxResults));
   };
 
   return (
@@ -76,6 +86,11 @@ export const App = (): ReactElement => {
           ))}
         </div>
       </div>
+      {books.length < totalItems ? (
+        <button type="button" onClick={loadMore}>
+          load More
+        </button>
+      ) : null}
     </div>
   );
 };
