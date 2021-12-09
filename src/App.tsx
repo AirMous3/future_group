@@ -1,10 +1,3 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-
-export const App = () => {
-    return (
-        <div>
-            123
-        </div>
-    );
-}
+export const App = (): ReactElement => <div>123</div>;
