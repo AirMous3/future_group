@@ -7,7 +7,7 @@ import { getBookThunk } from '../../redux/reducers/currentBookReducer/middleware
 import { AppRootStateType } from '../../redux/store';
 import { Preloader } from '../preloader/Preloader';
 
-import s from './bookInfo.module.css';
+import s from './bookInfo.module.scss';
 
 export const BookInfo = (): ReactElement => {
   const dispatch = useDispatch();

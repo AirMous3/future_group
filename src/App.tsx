@@ -8,6 +8,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import s from './app.module.scss';
 import { BookCard } from './components/bookCard/BookCard';
 import { BookInfo } from './components/bookInfo/BookInfo';
+import { Categories } from './components/categories/Categories';
 import { Preloader } from './components/preloader/Preloader';
 import {
   getBooksThunk,
@@ -58,18 +59,8 @@ export const App = (): ReactElement => {
           style={{ width: 500 }}
         />
         <div className={s.categoriesWrapper}>
-          <div className={s.categories}>
-            <div>categories</div>
-            <Select onChange={setCategory} value={category} style={{ width: 130 }}>
-              <Option value="">all</Option>
-              <Option value="art">art</Option>
-              <Option value="biography">biography</Option>
-              <Option value="computers">computers</Option>
-              <Option value="history">history</Option>
-              <Option value="medical">medical</Option>
-              <Option value="poetry">poetry</Option>
-            </Select>
-          </div>
+          <Categories onChangeCategory={setCategory} category={category} />
+
           <div className={s.categories}>
             <div>sorting by</div>
             <Select onChange={setSorting} value={sorting} style={{ width: 130 }}>
