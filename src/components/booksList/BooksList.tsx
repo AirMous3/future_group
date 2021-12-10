@@ -54,7 +54,12 @@ export const BooksList = ({
         ))}
       </div>
       {books.length < totalItems ? (
-        <button disabled={loadStatus === 'disable'} type="button" onClick={loadMore}>
+        <button
+          className={s.button}
+          disabled={loadStatus === 'disable'}
+          type="button"
+          onClick={loadMore}
+        >
           load More
         </button>
       ) : null}

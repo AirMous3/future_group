@@ -11,9 +11,9 @@ interface PropsType {
   category: string;
 }
 export const Categories = ({ onChangeCategory, category }: PropsType): ReactElement => (
-  <div className={s.container}>
+  <div className={s.categories}>
     <div>categories</div>
-    <Select onChange={onChangeCategory} value={category} style={{ width: 130 }}>
+    <Select onChange={onChangeCategory} value={category} className={s.select}>
       <Option value="">all</Option>
       <Option value="art">art</Option>
       <Option value="biography">biography</Option>

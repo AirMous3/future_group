@@ -30,12 +30,11 @@ export const BookCard = ({
       <NavLink to={`bookInfo/${id}`}>
         <img src={image} alt="bookImage" />
         <div className={s.description}>
-          <div>categories:{categories}</div>
-          <div>
-            {title}
-            {subTitle}
+          <div className={s.categories}>{categories}</div>
+          <div className={s.title}>
+            {title}.{subTitle}
           </div>
-          <div>author:{authors}</div>
+          <div className={s.author}>{authors}</div>
         </div>
       </NavLink>
     </div>

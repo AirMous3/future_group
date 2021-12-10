@@ -30,4 +30,22 @@
 .description {
   text-align: start;
   padding: 20px;
+  color: #444444;
+
+  .categories {
+    font-size: 15px;
+    text-decoration: underline;
+    margin-top: 20px;
+  }
+
+  .title {
+    color: black;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .author {
+    margin-top: 20px;
+    font-weight: lighter;
+  }
 }

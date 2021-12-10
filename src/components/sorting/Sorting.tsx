@@ -14,7 +14,7 @@ interface PropsType {
 export const Sorting = ({ onChangeSorting, sorting }: PropsType): ReactElement => (
   <div className={s.category}>
     <div>sorting by</div>
-    <Select onChange={onChangeSorting} value={sorting} style={{ width: 130 }}>
+    <Select onChange={onChangeSorting} value={sorting} className={s.sorting}>
       <Option value="relevance">relevance</Option>
       <Option value="newest">newest</Option>
     </Select>

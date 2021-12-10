@@ -33,13 +33,14 @@ export const BookInfo = (): ReactElement => {
 
           <div className={s.bookDescription}>
             <div>
-              categories:
               {book.categories?.map(b => (
-                <span key={b}>{b}</span>
+                <span className={s.categories} key={b}>
+                  {b}
+                </span>
               ))}
             </div>
             <div>
-              title:{book.title}
+              {book.title}
               {book.subTitle}
             </div>
             <div>author:{book.author}</div>
