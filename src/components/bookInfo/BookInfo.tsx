@@ -21,6 +21,8 @@ export const BookInfo = (): ReactElement => {
     dispatch(getBookThunk(bookID['*']!));
   }, []);
 
+  const parseBookDescription = (): any => ({ __html: book.description });
+
   return (
     <div>
       {loadStatus === 'loading' ? (
@@ -48,7 +50,10 @@ export const BookInfo = (): ReactElement => {
                 <span key={author}>{author} </span>
               ))}
             </div>
-            <p>{book.description}</p>
+            <p
+              className={s.descriptionContainer}
+              dangerouslySetInnerHTML={parseBookDescription()}
+            />
           </div>
         </div>
       )}
