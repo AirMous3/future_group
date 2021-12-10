@@ -41,7 +41,7 @@ export const BooksList = ({
     <div>
       <div className={s.founds}>Found {totalItems} results</div>
       <div className={s.cardWrapper}>
-        {books.map(({ id, categories, title, subTitle, image, author }) => (
+        {books.map(({ id, categories, title, image, author }) => (
           <BookCard
             key={id}
             id={id}
@@ -49,7 +49,6 @@ export const BooksList = ({
             image={image}
             author={author}
             categories={categories ? categories[FIRST_CATEGORIES_ITEM] : ''}
-            subTitle={subTitle}
           />
         ))}
       </div>
