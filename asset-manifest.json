@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/future_group/static/css/main.51fb9cdd.chunk.css",
+    "main.js": "/future_group/static/js/main.c28bdbf4.chunk.js",
+    "main.js.map": "/future_group/static/js/main.c28bdbf4.chunk.js.map",
+    "runtime-main.js": "/future_group/static/js/runtime-main.64959a63.js",
+    "runtime-main.js.map": "/future_group/static/js/runtime-main.64959a63.js.map",
+    "static/css/2.0ce74623.chunk.css": "/future_group/static/css/2.0ce74623.chunk.css",
+    "static/js/2.1bd058b1.chunk.js": "/future_group/static/js/2.1bd058b1.chunk.js",
+    "static/js/2.1bd058b1.chunk.js.map": "/future_group/static/js/2.1bd058b1.chunk.js.map",
+    "index.html": "/future_group/index.html",
+    "static/css/2.0ce74623.chunk.css.map": "/future_group/static/css/2.0ce74623.chunk.css.map",
+    "static/css/main.51fb9cdd.chunk.css.map": "/future_group/static/css/main.51fb9cdd.chunk.css.map",
+    "static/js/2.1bd058b1.chunk.js.LICENSE.txt": "/future_group/static/js/2.1bd058b1.chunk.js.LICENSE.txt",
+    "static/media/tail-spin.04c17002.svg": "/future_group/static/media/tail-spin.04c17002.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.64959a63.js",
+    "static/css/2.0ce74623.chunk.css",
+    "static/js/2.1bd058b1.chunk.js",
+    "static/css/main.51fb9cdd.chunk.css",
+    "static/js/main.c28bdbf4.chunk.js"
+  ]
+}
